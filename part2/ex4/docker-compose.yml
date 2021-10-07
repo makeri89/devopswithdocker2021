@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+  backend:
+    image: example-backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      REQUEST_ORIGIN: http://localhost:5000
+  frontend:
+    image: example-frontend
+    ports:
+      - 5000:5000

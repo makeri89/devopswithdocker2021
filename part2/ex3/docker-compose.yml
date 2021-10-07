@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ../../examples/material-applications/example-backend/ #Dockerfile is here
+    ports:
+      - 8080:8080
+    environment: 
+      REQUEST_ORIGIN: http://localhost:5000
+  frontend:
+    build:
+      context: ../../examples/material-applications/example-frontend
+    ports:
+      - 5000:5000
