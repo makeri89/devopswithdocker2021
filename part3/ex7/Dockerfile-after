@@ -1,0 +1,11 @@
+FROM node:16 AS base
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install &&\
+    npm run build &&\
+    useradd -m appuser &&\
+    chown appuser /usr/src/app
+USER appuser
+
+FROM nginx:1.21.3-alpine
+COPY --from=base /usr/src/app/build /usr/share/nginx/html
